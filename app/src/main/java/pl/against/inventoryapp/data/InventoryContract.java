@@ -24,11 +24,11 @@ public class InventoryContract {
         public final static String TABLE_NAME = "PRODUCTS";
 
         /**
-         * Unique ID number for the product (only for use in the database table).
+         * Unique _ID number for the product (only for use in the database table).
          * <p>
          * Type: INTEGER
          */
-        public final static String ID = BaseColumns._ID;
+        public final static String _ID = BaseColumns._ID;
 
         /**
          * Name of the product.

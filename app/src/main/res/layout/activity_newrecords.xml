@@ -38,7 +38,7 @@
             <EditText
                 android:id="@+id/edit_product_price"
                 style="@style/NewRecordFieldStyle"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 android:hint="price" />
         </LinearLayout>
     </LinearLayout>

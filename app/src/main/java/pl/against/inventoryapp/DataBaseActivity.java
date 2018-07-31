@@ -64,7 +64,7 @@ public class DataBaseActivity extends AppCompatActivity {
 
         String[] projection = {
 
-                InventoryEntry.ID,
+                InventoryEntry._ID,
                 InventoryEntry.COLUMN_PRODUCT_NAME,
                 InventoryEntry.COLUMN_PRODUCT_PRICE,
                 InventoryEntry.COLUMN_PRODUCT_SIZE,
@@ -80,22 +80,16 @@ public class DataBaseActivity extends AppCompatActivity {
                 null,
                 null,
                 null,
-                null,
                 null);
 
 
         TextView displayView = findViewById(R.id.text_view_product);
 
         try {
-            // Create a header in the Text View that looks like this:
-            //
-            // The items table contains <number of rows in Cursor> items.
-            //
-            // In the while loop below, iterate through the rows of the cursor and display
-            // the information from each column in this order.
+
             displayView.setText("The inventory table contains " + cursor.getCount() + " items.\n\n");
             displayView.append(
-                    InventoryEntry.ID + " - " +
+                    InventoryEntry._ID + " - " +
                             InventoryEntry.COLUMN_PRODUCT_NAME + "\n" +
                             InventoryEntry.COLUMN_PRODUCT_PRICE + "\n" +
                             InventoryEntry.COLUMN_PRODUCT_SIZE + "\n" +
@@ -104,7 +98,7 @@ public class DataBaseActivity extends AppCompatActivity {
                             InventoryEntry.COLUMN_SUPPLIER_PHONE);
 
             // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(InventoryEntry.ID);
+            int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
             int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
             int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_PRICE);
             int sizeColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_SIZE);
@@ -158,13 +152,14 @@ public class DataBaseActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Headphones");
-        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, "Wonder");
+        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, 50);
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, InventoryEntry.SIZE_MEDIUM);
         values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, 12);
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Luna");
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, 899766544);
 
 
+        long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
     }
 
     @Override

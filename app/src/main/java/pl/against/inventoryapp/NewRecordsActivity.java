@@ -120,6 +120,7 @@ public class NewRecordsActivity extends AppCompatActivity {
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
+        int price = Integer.parseInt(priceString);
         String quantityString = mQuantityEditText.getText().toString().trim();
         int quantity = Integer.parseInt(quantityString);
         String supplierString = mSupplierEditText.getText().toString().trim();
@@ -133,19 +134,19 @@ public class NewRecordsActivity extends AppCompatActivity {
         // and products attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, priceString);
+        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, price);
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, mSize);
         values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierString);
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, phone);
-        // Insert a new row for product in the database, returning the ID of that new row.
+        // Insert a new row for product in the database, returning the _ID of that new row.
         long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
         // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {
-            // If the row ID is -1, then there was an error with insertion.
+            // If the row _ID is -1, then there was an error with insertion.
             Toast.makeText(this, "Error with saving product", Toast.LENGTH_SHORT).show();
         } else {
-            // Otherwise, the insertion was successful and we can display a toast with the row ID.
+            // Otherwise, the insertion was successful and we can display a toast with the row _ID.
             Toast.makeText(this, "Product saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
         }
     }
