@@ -20,7 +20,9 @@ import pl.against.inventoryapp.data.InventoryDbHelper;
  */
 public class DataBaseActivity extends AppCompatActivity {
 
-    /** Database helper that will provide us access to the database */
+    /**
+     * Database helper that will provide us access to the database
+     */
     private InventoryDbHelper mDbHelper;
 
     @Override
@@ -41,6 +43,7 @@ public class DataBaseActivity extends AppCompatActivity {
         // and pass the context, which is the current activity.
         mDbHelper = new InventoryDbHelper(this);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -50,7 +53,7 @@ public class DataBaseActivity extends AppCompatActivity {
 
     /**
      * Temporary helper method to display information in the onscreen TextView about the state of
-     * the pets database.
+     * the products database.
      */
     private void displayDatabaseInfo() {
 
@@ -59,13 +62,15 @@ public class DataBaseActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 
-        String [] projection = {
+        String[] projection = {
 
                 InventoryEntry.ID,
                 InventoryEntry.COLUMN_PRODUCT_NAME,
                 InventoryEntry.COLUMN_PRODUCT_PRICE,
                 InventoryEntry.COLUMN_PRODUCT_SIZE,
-                InventoryEntry.COLUMN_PRODUCT_QUANTITY
+                InventoryEntry.COLUMN_PRODUCT_QUANTITY,
+                InventoryEntry.COLUMN_SUPPLIER_NAME,
+                InventoryEntry.COLUMN_SUPPLIER_PHONE
         };
 
         Cursor cursor = db.query(
@@ -75,10 +80,11 @@ public class DataBaseActivity extends AppCompatActivity {
                 null,
                 null,
                 null,
+                null,
                 null);
 
 
-        TextView displayView = findViewById(R.id.text_view_pet);
+        TextView displayView = findViewById(R.id.text_view_product);
 
         try {
             // Create a header in the Text View that looks like this:
@@ -90,10 +96,12 @@ public class DataBaseActivity extends AppCompatActivity {
             displayView.setText("The inventory table contains " + cursor.getCount() + " items.\n\n");
             displayView.append(
                     InventoryEntry.ID + " - " +
-                    InventoryEntry.COLUMN_PRODUCT_NAME + "\n"+
-                    InventoryEntry.COLUMN_PRODUCT_PRICE + "\n"+
-                    InventoryEntry.COLUMN_PRODUCT_SIZE + "\n"+
-                    InventoryEntry.COLUMN_PRODUCT_QUANTITY + "\n");
+                            InventoryEntry.COLUMN_PRODUCT_NAME + "\n" +
+                            InventoryEntry.COLUMN_PRODUCT_PRICE + "\n" +
+                            InventoryEntry.COLUMN_PRODUCT_SIZE + "\n" +
+                            InventoryEntry.COLUMN_PRODUCT_QUANTITY + "\n" +
+                            InventoryEntry.COLUMN_SUPPLIER_NAME + "\n" +
+                            InventoryEntry.COLUMN_SUPPLIER_PHONE);
 
             // Figure out the index of each column
             int idColumnIndex = cursor.getColumnIndex(InventoryEntry.ID);
@@ -101,6 +109,8 @@ public class DataBaseActivity extends AppCompatActivity {
             int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_PRICE);
             int sizeColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_SIZE);
             int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_QUANTITY);
+            int supplierColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_NAME);
+            int phoneColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_PHONE);
 
             // Iterate through all the returned rows in the cursor
             while (cursor.moveToNext()) {
@@ -111,13 +121,18 @@ public class DataBaseActivity extends AppCompatActivity {
                 int currentPrice = cursor.getInt(priceColumnIndex);
                 int currentSize = cursor.getInt(sizeColumnIndex);
                 int currentQuantity = cursor.getInt(quantityColumnIndex);
+                String currentSupplier = cursor.getString(supplierColumnIndex);
+                int currentPhone = cursor.getInt(phoneColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" +
                         currentID + " - " +
                         currentName + " - " +
                         currentPrice + " - " +
                         currentSize + " - " +
-                        currentQuantity));
+                        currentQuantity + " - " +
+                        currentSupplier + " - " +
+                        currentPhone
+                ));
             }
 
         } finally {
@@ -134,34 +149,36 @@ public class DataBaseActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_database, menu);
         return true;
     }
+
     /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
+     * Helper method to insert hardcoded product data into the database. For debugging purposes only.
      */
     private void insertProduct() {
         // Gets the database in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Headphones");
         values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, "Wonder");
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, InventoryEntry.SIZE_MEDIUM);
         values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, 12);
+        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Luna");
+        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, 899766544);
 
-        long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
+
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
+
         switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
+
             case R.id.insert_data:
                 insertProduct();
                 displayDatabaseInfo();
                 return true;
-            // Respond to a click on the "Delete all entries" menu option
+
             case R.id.delete_data:
-                // Do nothing for now
+
                 return true;
         }
         return super.onOptionsItemSelected(item);

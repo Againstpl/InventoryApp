@@ -1,40 +1,58 @@
 package pl.against.inventoryapp;
 
 
-        import android.content.ContentValues;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.os.Bundle;
-        import android.support.v4.app.NavUtils;
-        import android.support.v7.app.AppCompatActivity;
-        import android.text.TextUtils;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.EditText;
-        import android.widget.Spinner;
-        import android.widget.Toast;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-        import pl.against.inventoryapp.data.InventoryContract.InventoryEntry;
-        import pl.against.inventoryapp.data.InventoryDbHelper;
+import pl.against.inventoryapp.data.InventoryContract.InventoryEntry;
+import pl.against.inventoryapp.data.InventoryDbHelper;
 
 
 /**
- * Allows user to create a new pet or edit an existing one.
+ * Allows user to create a new product or edit an existing one.
  */
 public class NewRecordsActivity extends AppCompatActivity {
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the product's name
+     */
     private EditText mNameEditText;
 
-    /** EditText field to enter the pet's breed */
+    /**
+     * EditText field to enter the product's price
+     */
     private EditText mPriceEditText;
 
-    /** EditText field to enter the pet's weight */
+    /**
+     * EditText field to enter the product quantity
+     */
     private EditText mQuantityEditText;
 
-    /** EditText field to enter the pet's gender */
+    /**
+     * EditText field to enter the supplier's name
+     */
+    private EditText mSupplierEditText;
+
+    /**
+     * EditText field to enter the supplier's phone number
+     */
+    private EditText mPhoneEditText;
+
+    /**
+     * EditText field to enter the size
+     */
     private Spinner mSizeSpinner;
 
     private int mSize = InventoryEntry.SIZE_MEDIUM;
@@ -45,10 +63,12 @@ public class NewRecordsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_newrecords);
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_pet_name);
-        mPriceEditText = (EditText) findViewById(R.id.edit_pet_breed);
-        mQuantityEditText = (EditText) findViewById(R.id.edit_pet_weight);
-        mSizeSpinner = (Spinner) findViewById(R.id.spinner_gender);
+        mNameEditText = findViewById(R.id.edit_product_name);
+        mPriceEditText = findViewById(R.id.edit_product_price);
+        mQuantityEditText = findViewById(R.id.edit_product_quantity);
+        mSizeSpinner = findViewById(R.id.spinner_size);
+        mSupplierEditText = findViewById(R.id.edit_supplier_name);
+        mPhoneEditText = findViewById(R.id.edit_supplier_phone);
 
         setupSpinner();
     }
@@ -91,6 +111,7 @@ public class NewRecordsActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Get user input from editor and save new product into database.
      */
@@ -101,6 +122,9 @@ public class NewRecordsActivity extends AppCompatActivity {
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
         int quantity = Integer.parseInt(quantityString);
+        String supplierString = mSupplierEditText.getText().toString().trim();
+        String phoneString = mPhoneEditText.getText().toString().trim();
+        int phone = Integer.parseInt(phoneString);
         // Create database helper
         InventoryDbHelper mDbHelper = new InventoryDbHelper(this);
         // Gets the database in write mode
@@ -112,6 +136,8 @@ public class NewRecordsActivity extends AppCompatActivity {
         values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, priceString);
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, mSize);
         values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierString);
+        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, phone);
         // Insert a new row for product in the database, returning the ID of that new row.
         long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
         // Show a toast message depending on whether or not the insertion was successful
@@ -123,6 +149,7 @@ public class NewRecordsActivity extends AppCompatActivity {
             Toast.makeText(this, "Product saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_editor.xml file.

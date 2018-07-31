@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Layout for the editor -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +16,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_overview"
+            android:text="product"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -25,35 +24,35 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:paddingStart="4dp"
+            android:paddingLeft="4dp"
             android:orientation="vertical">
 
             <!-- Name field -->
             <EditText
-                android:id="@+id/edit_pet_name"
-                android:hint="@string/hint_pet_name"
+                android:id="@+id/edit_product_name"
+                style="@style/NewRecordFieldStyle"
                 android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
+                android:hint="name" />
 
-            <!-- Breed field -->
+            <!-- Price field -->
             <EditText
-                android:id="@+id/edit_pet_breed"
-                android:hint="@string/hint_pet_breed"
+                android:id="@+id/edit_product_price"
+                style="@style/NewRecordFieldStyle"
                 android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
+                android:hint="price" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Gender category -->
+    <!-- Size category -->
     <LinearLayout
-        android:id="@+id/container_gender"
+        android:id="@+id/container_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_gender"
+            android:text="size"
             style="@style/CategoryStyle" />
 
         <!-- Input field -->
@@ -63,47 +62,75 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
-            <!-- Gender drop-down spinner -->
+            <!-- Size drop-down spinner -->
             <Spinner
-                android:id="@+id/spinner_gender"
+                android:id="@+id/spinner_size"
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
-                android:paddingRight="16dp"
+                android:paddingEnd="16dp"
                 android:spinnerMode="dropdown"/>
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Measurement category -->
+    <!-- quantity category -->
     <LinearLayout
-        android:id="@+id/container_measurement"
+        android:id="@+id/container_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_measurement"
+            android:text="quantity"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
+        <!-- Quantity field -->
+        <EditText
+            android:id="@+id/edit_product_quantity"
+            style="@style/NewRecordFieldStyle"
+            android:hint="quantity"
+            android:inputType="number" />
 
-            <!-- Weight field -->
-            <EditText
-                android:id="@+id/edit_pet_weight"
-                android:hint="@string/hint_pet_weight"
-                android:inputType="number"
-                style="@style/EditorFieldStyle" />
+    </LinearLayout>
 
-            <!-- Units for weight (kg) -->
-            <TextView
-                android:id="@+id/label_weight_units"
-                android:text="@string/unit_pet_weight"
-                style="@style/EditorUnitsStyle"/>
-        </RelativeLayout>
+    <!-- quantity category -->
+    <LinearLayout
+        android:id="@+id/container_supplier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="supplier" />
+
+        <!-- Quantity field -->
+        <EditText
+            android:id="@+id/edit_supplier_name"
+            style="@style/NewRecordFieldStyle"
+            android:hint="supplier"
+            android:inputType="text" />
+
+    </LinearLayout>
+    <!-- quantity category -->
+    <LinearLayout
+        android:id="@+id/container_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="phone number" />
+
+        <!-- Quantity field -->
+        <EditText
+            android:id="@+id/edit_supplier_phone"
+            style="@style/NewRecordFieldStyle"
+            android:hint="phone"
+            android:inputType="phone" />
+
     </LinearLayout>
 </LinearLayout>

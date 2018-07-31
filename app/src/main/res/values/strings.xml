@@ -5,9 +5,9 @@
     <string name="size_medium">Medium</string>
     <string name="size_big">Big</string>
     <string name="new_record_activity_title_new_product">Add a new product</string>
-    <string name="insert_data">Insert data</string>
-    <string name="delete_data">Delete data</string>
-    <string name="save_data">Save data</string>
+    <string name="insert_data">Insert</string>
+    <string name="delete_data">Delete</string>
+    <string name="save_data">Save</string>
 
     <string-array name="array_size_options">
         <item>@string/size_small</item>

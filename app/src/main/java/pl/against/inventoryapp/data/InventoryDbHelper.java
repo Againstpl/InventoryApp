@@ -13,7 +13,9 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
 
     public static final String LOG_TAG = InventoryDbHelper.class.getSimpleName();
 
-    /** Name of the database file */
+    /**
+     * Name of the database file
+     */
     private static final String DATABASE_NAME = "inventory.db";
 
     /**
@@ -35,13 +37,16 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create a String that contains the SQL statement to create the pets table
-        String SQL_CREATE_PRODUCTS_TABLE =  "CREATE TABLE " + InventoryEntry.TABLE_NAME + " ("
-                + InventoryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + InventoryEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
+
+
+        String SQL_CREATE_PRODUCTS_TABLE = " CREATE TABLE " + InventoryEntry.TABLE_NAME + " ("
+                + InventoryEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + InventoryEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL,"
                 + InventoryEntry.COLUMN_PRODUCT_PRICE + " INTEGER NOT NULL, "
                 + InventoryEntry.COLUMN_PRODUCT_SIZE + " INTEGER NOT NULL, "
-                + InventoryEntry.COLUMN_PRODUCT_QUANTITY + " INTEGER NOT NULL DEFAULT 0);";
+                + InventoryEntry.COLUMN_PRODUCT_QUANTITY + " INTEGER NOT NULL,"
+                + InventoryEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, "
+                + InventoryEntry.COLUMN_SUPPLIER_PHONE + " INTEGER NOT NULL )";
 
         // Execute the SQL statement
         db.execSQL(SQL_CREATE_PRODUCTS_TABLE);
