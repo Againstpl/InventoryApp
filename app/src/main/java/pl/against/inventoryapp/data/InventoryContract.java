@@ -66,14 +66,14 @@ public class InventoryContract {
          * <p>
          * Type: TEXT
          */
-        public final static String COLUMN_SUPPLIER_NAME = "SUPPLIER NAME";
+        public final static String COLUMN_SUPPLIER_NAME = "SUPPLIER_NAME";
 
         /**
          * Supplier phone number.
          * <p>
          * Type: INTEGER
          */
-        public final static String COLUMN_SUPPLIER_PHONE = "PHONE NUMBER";
+        public final static String COLUMN_SUPPLIER_PHONE = "PHONE_NUMBER";
 
         /**
          * Possible values for the sizes of the product.
