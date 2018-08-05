@@ -21,12 +21,17 @@
         </activity>
         <activity
             android:name=".NewRecordsActivity"
-            android:label="@string/new_record_activity_title_new_product"
+
             android:parentActivityName=".DataBaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DataBaseActivity" />
         </activity>
+
+        <provider
+            android:name=".data.InventoryProvider"
+            android:authorities="pl.against.inventoryapp"
+            android:exported="false" />
 
     </application>
 

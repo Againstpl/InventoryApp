@@ -9,7 +9,7 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/delete_data"
+        android:id="@+id/delete_data_all"
         android:title="@string/delete_data"
         app:showAsAction="never" />
 </menu>

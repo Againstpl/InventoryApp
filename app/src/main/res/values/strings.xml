@@ -5,9 +5,29 @@
     <string name="size_medium">Medium</string>
     <string name="size_big">Big</string>
     <string name="new_record_activity_title_new_product">Add a new product</string>
+    <string name="new_record_activity_title_edit_product">Edit a product</string>
     <string name="insert_data">Insert</string>
     <string name="delete_data">Delete</string>
     <string name="save_data">Save</string>
+    <string name="new_record_insert_product_successful">Product saved</string>
+    <string name="new_record_insert_product_failed">Error with saving product</string>
+    <string name="new_record_update_product_successful">Product updated</string>
+    <string name="new_record_update_product_failed">Error with updating product</string>
+
+
+    <string name="empty_view_title_text">It\'s a bit lonely here&#8230;</string>
+    <string name="empty_view_subtitle_text">Get started by adding a pet</string>
+
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="new_record_delete_product_successful">Product deleted</string>
+    <string name="new_record_delete_product_failed">Error with deleting product</string>
+    <string name="delete_dialog_msg">Delete this product?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="unknown_price">Unknown price</string>
+
 
     <string-array name="array_size_options">
         <item>@string/size_small</item>
