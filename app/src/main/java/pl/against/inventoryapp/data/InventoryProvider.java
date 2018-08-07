@@ -53,16 +53,8 @@ public class InventoryProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-
-        // Make sure the variable is a global variable, so it can be referenced from other
-        // ContentProvider methods.
-
         // Create database helper
         mDbHelper = new InventoryDbHelper(getContext());
-        // Gets the database in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-
         return true;
     }
 
@@ -247,7 +239,7 @@ public class InventoryProvider extends ContentProvider {
             return 0;
         }
 
-        // Otherwise, get writeable database to update the data
+        // Otherwise, get writable database to update the data
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         int rowsUpdated = database.update(InventoryContract.InventoryEntry.TABLE_NAME, values, selection, selectionArgs);
@@ -268,7 +260,7 @@ public class InventoryProvider extends ContentProvider {
      */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Get writeable database
+        // Get writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Track the number of rows that were deleted
@@ -298,6 +290,7 @@ public class InventoryProvider extends ContentProvider {
         // Return the number of rows deleted
         return rowsDeleted;
     }
+
 
     /**
      * Returns the MIME type of data for the content URI.

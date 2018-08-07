@@ -87,9 +87,22 @@
         <!-- Quantity field -->
         <EditText
             android:id="@+id/edit_product_quantity"
-            style="@style/NewRecordFieldStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="quantity"
             android:inputType="number" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="increase"
+            android:text="+" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="decrease"
+            android:text="-" />
 
     </LinearLayout>
 
