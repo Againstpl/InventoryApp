@@ -136,6 +136,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mPhoneEditText.setOnTouchListener(mTouchListener);
 
         setupSpinner();
+
     }
 
     /**

@@ -58,10 +58,11 @@ public class ProductCursorAdapter extends CursorAdapter {
         // Find individual views that we want to modify in the list item layout
         TextView nameTextView = view.findViewById(R.id.name);
         TextView priceTextView = view.findViewById(R.id.price);
-        final TextView quantityTextView = view.findViewById(R.id.quantity);
+        TextView quantityTextView = view.findViewById(R.id.quantity);
         TextView supplierTextView = view.findViewById(R.id.supplier);
         TextView phoneTextView = view.findViewById(R.id.phone);
         Button saleButton = view.findViewById(R.id.sale);
+
         // Find the columns of pet attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
@@ -97,5 +98,12 @@ public class ProductCursorAdapter extends CursorAdapter {
 
             }
         });
+
+
+        //  increase
+
+        // decrease
     }
+
+
 }

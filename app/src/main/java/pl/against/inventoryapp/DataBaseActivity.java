@@ -16,10 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
-import pl.against.inventoryapp.data.InventoryContract;
 import pl.against.inventoryapp.data.InventoryContract.InventoryEntry;
 
 /**
@@ -54,13 +52,6 @@ public class DataBaseActivity extends AppCompatActivity implements
         });
 
 
-        Button sale = findViewById(R.id.sale);
-        sale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saleProduct(InventoryEntry._ID, InventoryEntry.COLUMN_PRODUCT_QUANTITY);
-            }
-        });
 
 
         // Find the ListView which will be populated with the pet data
@@ -130,14 +121,7 @@ public class DataBaseActivity extends AppCompatActivity implements
         Log.v("DataBaseActivity", rowsDeleted + " rows deleted from database");
     }
 
-    public void saleProduct(int id, int quantitySale) {
-        quantitySale = quantitySale - 1;
-        Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantitySale);
-        int rowsAffected = getContentResolver().update(currentProductUri, values, null, null);
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
