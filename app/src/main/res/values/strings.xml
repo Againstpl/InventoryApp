@@ -27,6 +27,7 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="unknown_price">Unknown price</string>
+    <string name="quantity_zero">Quantity cannot be less than zero</string>
 
 
     <string-array name="array_size_options">

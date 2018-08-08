@@ -32,6 +32,7 @@ public class DataBaseActivity extends AppCompatActivity implements
      */
     private static final int PRODUCT_LOADER = 0;
 
+    int quantitySale;
     /**
      * Adapter for the ListView
      */
@@ -90,11 +91,11 @@ public class DataBaseActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
     }
 
-    public void saleProduct(int id, int quantitySale) {
+    public void saleProduct(int id, int quantity) {
         quantitySale = quantitySale - 1;
         Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
         ContentValues values = new ContentValues();
-        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantitySale);
+        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
         int rowsAffected = getContentResolver().update(currentProductUri, values, null, null);
 
     }

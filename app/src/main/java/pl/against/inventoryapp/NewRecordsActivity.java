@@ -95,6 +95,10 @@ public class NewRecordsActivity extends AppCompatActivity implements
 
     private Button mDecreaseButton;
 
+    int quantityChange;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -513,12 +517,17 @@ public class NewRecordsActivity extends AppCompatActivity implements
     }
 
     public void increase(View view) {
-
-
+        quantityChange = quantityChange + 1;
+        mQuantityEditText.setText(String.valueOf(quantityChange));
     }
 
     public void decrease(View view) {
-
+        if (quantityChange > 0) {
+            quantityChange = quantityChange - 1;
+            mQuantityEditText.setText(String.valueOf(quantityChange));
+        } else {
+            Toast.makeText(this, getString(R.string.quantity_zero), Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
