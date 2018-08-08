@@ -43,7 +43,7 @@ public class InventoryProvider extends ContentProvider {
         // when a match is found.
 
         sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_PRODUCTS, PRODUCTS);
-        sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_PRODUCTS + "#", PRODUCTS_ID);
+        sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_PRODUCTS + "/#", PRODUCTS_ID);
     }
 
     private InventoryDbHelper mDbHelper;
@@ -308,23 +308,6 @@ public class InventoryProvider extends ContentProvider {
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }
     }
-
-//    Button sale = findViewById(R.id.sale);
-//        sale.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            saleProduct(PRODUCTS_ID, PRODUCTS);
-//        }
-//    });
-
-//    public void saleProduct(int id, int quantitySale) {
-//        quantitySale = quantitySale - 1;
-//        Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
-//        ContentValues values = new ContentValues();
-//        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantitySale);
-//        int rowsAffected = getContentResolver().update(currentProductUri, values, null, null);
-//
-//    }
 
 }
 

@@ -99,10 +99,6 @@ public class ProductCursorAdapter extends CursorAdapter {
             }
         });
 
-
-        //  increase
-
-        // decrease
     }
 
 

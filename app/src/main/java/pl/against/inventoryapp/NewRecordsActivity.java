@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -90,6 +91,10 @@ public class NewRecordsActivity extends AppCompatActivity implements
     };
 
 
+    private Button mIncreaseButton;
+
+    private Button mDecreaseButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +129,8 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mSizeSpinner = findViewById(R.id.spinner_size);
         mSupplierEditText = findViewById(R.id.edit_supplier_name);
         mPhoneEditText = findViewById(R.id.edit_supplier_phone);
+        mIncreaseButton = findViewById(R.id.increase);
+        mDecreaseButton = findViewById(R.id.decrease);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -134,6 +141,8 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mSizeSpinner.setOnTouchListener(mTouchListener);
         mSupplierEditText.setOnTouchListener(mTouchListener);
         mPhoneEditText.setOnTouchListener(mTouchListener);
+        mIncreaseButton.setOnTouchListener(mTouchListener);
+        mDecreaseButton.setOnTouchListener(mTouchListener);
 
         setupSpinner();
 
@@ -502,4 +511,14 @@ public class NewRecordsActivity extends AppCompatActivity implements
         // Close the activity
         finish();
     }
+
+    public void increase(View view) {
+
+
+    }
+
+    public void decrease(View view) {
+
+    }
+
 }
