@@ -256,6 +256,7 @@ public class InventoryProvider extends ContentProvider {
     }
 
 
+
     /**
      * Delete the data at the given selection and selection arguments.
      */

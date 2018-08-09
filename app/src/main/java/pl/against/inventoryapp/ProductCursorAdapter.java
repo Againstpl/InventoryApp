@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -54,28 +53,22 @@ public class ProductCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
         TextView nameTextView = view.findViewById(R.id.name);
         TextView priceTextView = view.findViewById(R.id.price);
-        TextView quantityTextView = view.findViewById(R.id.quantity);
-        TextView supplierTextView = view.findViewById(R.id.supplier);
-        TextView phoneTextView = view.findViewById(R.id.phone);
-        Button saleButton = view.findViewById(R.id.sale);
+        final TextView quantityTextView = view.findViewById(R.id.quantity);
 
         // Find the columns of pet attributes that we're interested in
+        final int idColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
-        int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
-        int supplierColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_NAME);
-        int phoneColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_PHONE);
+        final int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
 
         // Read the pet attributes from the Cursor for the current pet
         String productName = cursor.getString(nameColumnIndex);
         String productPrice = cursor.getString(priceColumnIndex);
-        String productQuantity = cursor.getString(quantityColumnIndex);
-        String supplierName = cursor.getString(supplierColumnIndex);
-        String supplierPhone = cursor.getString(phoneColumnIndex);
+        final String productQuantity = cursor.getString(quantityColumnIndex);
 
         // If the pet breed is empty string or null, then use some default text
         // that says "Unknown breed", so the TextView isn't blank.
@@ -88,18 +81,30 @@ public class ProductCursorAdapter extends CursorAdapter {
         nameTextView.setText(productName);
         priceTextView.setText(productPrice);
         quantityTextView.setText(productQuantity);
-        supplierTextView.setText(supplierName);
-        phoneTextView.setText(supplierPhone);
+        //supplierTextView.setText(supplierName);
+        //phoneTextView.setText(supplierPhone);
 
-        saleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-
+//saleButton.setOnClickListener(new View.OnClickListener() {
+//    @Override
+//    public void onClick(View v) {
+//        saleProduct();
+//
+//    }
+//});
+//
     }
+
+//    public void saleProduct(int id, int quantity){
+//        quantity = quantity - 1;
+//        ContentValues values = new ContentValues();
+//        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+//        Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
+//        int rowsUpdated = getContentResolver().update(currentProductUri, values, null, null);
+//        Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
+//    }
+
+
+
 
 
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
     android:padding="@dimen/activity_margin">
 
 
@@ -81,56 +82,56 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingRight="@dimen/label_padding"
-            android:text="supplier:"
-            android:focusable="false"
-            android:textAppearance="?android:textAppearanceSmall" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:fontFamily="sans-serif"-->
+    <!--android:paddingRight="@dimen/label_padding"-->
+    <!--android:text="supplier:"-->
+    <!--android:focusable="false"-->
+    <!--android:textAppearance="?android:textAppearanceSmall" />-->
 
-        <TextView
-            android:id="@+id/supplier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:focusable="false"
-            android:textColor="#2B3D4D" />
+    <!--<TextView-->
+    <!--android:id="@+id/supplier"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:fontFamily="sans-serif"-->
+    <!--android:textAppearance="?android:textAppearanceSmall"-->
+    <!--android:focusable="false"-->
+    <!--android:textColor="#2B3D4D" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingRight="@dimen/label_padding"
-            android:text="phone:"
-            android:focusable="false"
-            android:textAppearance="?android:textAppearanceSmall" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:fontFamily="sans-serif"-->
+    <!--android:paddingRight="@dimen/label_padding"-->
+    <!--android:text="phone:"-->
+    <!--android:focusable="false"-->
+    <!--android:textAppearance="?android:textAppearanceSmall" />-->
 
-        <TextView
-            android:id="@+id/phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autoLink="phone"
-            android:fontFamily="sans-serif"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:focusable="false"
-            android:textColor="#2B3D4D" />
+    <!--<TextView-->
+    <!--android:id="@+id/phone"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:autoLink="phone"-->
+    <!--android:fontFamily="sans-serif"-->
+    <!--android:textAppearance="?android:textAppearanceSmall"-->
+    <!--android:focusable="false"-->
+    <!--android:textColor="#2B3D4D" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 
     <Button
