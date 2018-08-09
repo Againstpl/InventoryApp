@@ -37,43 +37,36 @@ public class NewRecordsActivity extends AppCompatActivity implements
      * Identifier for the pet data loader
      */
     private static final int EXISTING_PET_LOADER = 0;
+    int quantityChange;
     /**
      * Content URI for the existing pet (null if it's a new pet)
      */
     private Uri mCurrentProductUri;
-
     /**
      * EditText field to enter the product's name
      */
     private EditText mNameEditText;
-
     /**
      * EditText field to enter the product's price
      */
     private EditText mPriceEditText;
-
     /**
      * EditText field to enter the product quantity
      */
     private EditText mQuantityEditText;
-
     /**
      * EditText field to enter the supplier's name
      */
     private EditText mSupplierEditText;
-
     /**
      * EditText field to enter the supplier's phone number
      */
     private EditText mPhoneEditText;
-
     /**
      * EditText field to enter the size
      */
     private Spinner mSizeSpinner;
-
     private int mSize = InventoryEntry.SIZE_MEDIUM;
-
     /**
      * Boolean flag that keeps track of whether the pet has been edited (true) or not (false)
      */
@@ -89,15 +82,8 @@ public class NewRecordsActivity extends AppCompatActivity implements
             return false;
         }
     };
-
-
     private Button mIncreaseButton;
-
     private Button mDecreaseButton;
-
-    int quantityChange;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -266,6 +252,34 @@ public class NewRecordsActivity extends AppCompatActivity implements
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void saleProduct() {
+
+        // Read from input fields
+        // Use trim to eliminate leading or trailing white space
+        String nameString = mNameEditText.getText().toString().trim();
+        String quantityString = mQuantityEditText.getText().toString().trim();
+
+        int quantity = Integer.parseInt(quantityString);
+        // Create a ContentValues object where column names are the keys,
+        // and products attributes from the editor are the values.
+        ContentValues values = new ContentValues();
+        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+
+        int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
+        // Show a toast message depending on whether or not the update was successful.
+        if (rowsAffected == 0) {
+            // If no rows were affected, then there was an error with the update.
+            Toast.makeText(this, getString(R.string.new_record_update_product_failed),
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the update was successful and we can display a toast.
+            Toast.makeText(this, getString(R.string.new_record_update_product_successful),
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -529,5 +543,6 @@ public class NewRecordsActivity extends AppCompatActivity implements
             Toast.makeText(this, getString(R.string.quantity_zero), Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

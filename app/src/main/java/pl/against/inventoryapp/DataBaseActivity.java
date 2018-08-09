@@ -86,6 +86,7 @@ public class DataBaseActivity extends AppCompatActivity implements
             }
         });
 
+
         // Kick off the loader
         getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
     }
@@ -129,6 +130,7 @@ public class DataBaseActivity extends AppCompatActivity implements
         getMenuInflater().inflate(R.menu.menu_database, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

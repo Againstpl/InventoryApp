@@ -81,17 +81,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         nameTextView.setText(productName);
         priceTextView.setText(productPrice);
         quantityTextView.setText(productQuantity);
-        //supplierTextView.setText(supplierName);
-        //phoneTextView.setText(supplierPhone);
 
-//saleButton.setOnClickListener(new View.OnClickListener() {
-//    @Override
-//    public void onClick(View v) {
-//        saleProduct();
-//
-//    }
-//});
-//
     }
 
 //    public void saleProduct(int id, int quantity){
