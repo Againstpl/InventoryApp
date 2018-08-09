@@ -258,15 +258,16 @@ public class NewRecordsActivity extends AppCompatActivity implements
 
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
-        String nameString = mNameEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
+        ContentValues values = new ContentValues();
 
         int quantity = Integer.parseInt(quantityString);
+        if (quantity >= 1) {
+            int quantitySale = quantity - 1;
+            values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantitySale);
+        }
         // Create a ContentValues object where column names are the keys,
         // and products attributes from the editor are the values.
-        ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
 
         int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
         // Show a toast message depending on whether or not the update was successful.
@@ -459,7 +460,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
     private void showUnsavedChangesDialog(
             DialogInterface.OnClickListener discardButtonClickListener) {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.unsaved_changes_dialog_msg);
         builder.setPositiveButton(R.string.discard, discardButtonClickListener);
@@ -482,7 +483,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
      */
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
