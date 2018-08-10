@@ -1,11 +1,16 @@
 package pl.against.inventoryapp;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -58,6 +63,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         TextView nameTextView = view.findViewById(R.id.name);
         TextView priceTextView = view.findViewById(R.id.price);
         final TextView quantityTextView = view.findViewById(R.id.quantity);
+        Button saleButton = view.findViewById(R.id.sale);
 
         // Find the columns of pet attributes that we're interested in
         final int idColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry._ID);
@@ -82,16 +88,24 @@ public class ProductCursorAdapter extends CursorAdapter {
         priceTextView.setText(productPrice);
         quantityTextView.setText(productQuantity);
 
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //I know that this params are wrong, but nothing works here.
+                saleProduct(context, id, quantity);
+            }
+        });
+
     }
 
-//    public void saleProduct(int id, int quantity){
-//        quantity = quantity - 1;
-//        ContentValues values = new ContentValues();
-//        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
-//        Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
-//        int rowsUpdated = getContentResolver().update(currentProductUri, values, null, null);
-//        Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
-//    }
+    private void saleProduct(Context context, int id, int quantity) {
+        quantity = quantity - 1;
+        ContentValues values = new ContentValues();
+        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+        Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
+        int rowsUpdated = context.getContentResolver().update(currentProductUri, values, null, null);
+        Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
+    }
 
 
 

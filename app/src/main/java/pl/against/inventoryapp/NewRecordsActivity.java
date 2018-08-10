@@ -254,34 +254,34 @@ public class NewRecordsActivity extends AppCompatActivity implements
         }
     }
 
-    public void saleProduct() {
-
-        // Read from input fields
-        // Use trim to eliminate leading or trailing white space
-        String quantityString = mQuantityEditText.getText().toString().trim();
-        ContentValues values = new ContentValues();
-
-        int quantity = Integer.parseInt(quantityString);
-        if (quantity >= 1) {
-            int quantitySale = quantity - 1;
-            values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantitySale);
-        }
-        // Create a ContentValues object where column names are the keys,
-        // and products attributes from the editor are the values.
-
-        int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
-        // Show a toast message depending on whether or not the update was successful.
-        if (rowsAffected == 0) {
-            // If no rows were affected, then there was an error with the update.
-            Toast.makeText(this, getString(R.string.new_record_update_product_failed),
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            // Otherwise, the update was successful and we can display a toast.
-            Toast.makeText(this, getString(R.string.new_record_update_product_successful),
-                    Toast.LENGTH_SHORT).show();
-        }
-
-    }
+//    public void saleProduct() {
+//
+//        // Read from input fields
+//        // Use trim to eliminate leading or trailing white space
+//        String quantityString = mQuantityEditText.getText().toString().trim();
+//        ContentValues values = new ContentValues();
+//
+//        int quantity = Integer.parseInt(quantityString);
+//        if (quantity >= 1) {
+//            int quantitySale = quantity - 1;
+//            values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantitySale);
+//        }
+//        // Create a ContentValues object where column names are the keys,
+//        // and products attributes from the editor are the values.
+//
+//        int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
+//        // Show a toast message depending on whether or not the update was successful.
+//        if (rowsAffected == 0) {
+//            // If no rows were affected, then there was an error with the update.
+//            Toast.makeText(this, getString(R.string.new_record_update_product_failed),
+//                    Toast.LENGTH_SHORT).show();
+//        } else {
+//            // Otherwise, the update was successful and we can display a toast.
+//            Toast.makeText(this, getString(R.string.new_record_update_product_successful),
+//                    Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
