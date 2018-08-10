@@ -96,12 +96,14 @@ public class ProductCursorAdapter extends CursorAdapter {
             public void onClick(View v) {
                 //I know that this params are wrong, but nothing works here.
                 saleProduct(context, productID, productQuantityInteger);
+
             }
         });
 
     }
 
     private void saleProduct(Context context, int id, int quantity) {
+
         if (quantity > 0) {
             quantity = quantity - 1;
             ContentValues values = new ContentValues();
@@ -110,7 +112,8 @@ public class ProductCursorAdapter extends CursorAdapter {
             int rowsUpdated = context.getContentResolver().update(currentProductUri, values, null, null);
             Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
         } else {
-            Toast.makeText(this, getString(R.string.quantity_zero), Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(context, R.string.quantity_zero, Toast.LENGTH_SHORT).show();
         }
     }
 

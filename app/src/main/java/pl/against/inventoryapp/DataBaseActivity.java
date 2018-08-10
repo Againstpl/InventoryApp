@@ -21,13 +21,13 @@ import android.widget.ListView;
 import pl.against.inventoryapp.data.InventoryContract.InventoryEntry;
 
 /**
- * Displays list of pets that were entered and stored in the app.
+ * Displays list of products that were entered and stored in the app.
  */
 public class DataBaseActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
-     * Identifier for the pet data loader
+     * Identifier for the product data loader
      */
     private static final int PRODUCT_LOADER = 0;
 
@@ -52,15 +52,15 @@ public class DataBaseActivity extends AppCompatActivity implements
             }
         });
 
-        // Find the ListView which will be populated with the pet data
+        // Find the ListView which will be populated with the product data
         ListView productListView = findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
         productListView.setEmptyView(emptyView);
 
-        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        // Setup an Adapter to create a list item for each row of product data in the Cursor.
+        // There is no product data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new ProductCursorAdapter(this, null);
         productListView.setAdapter(mCursorAdapter);
 
@@ -71,17 +71,17 @@ public class DataBaseActivity extends AppCompatActivity implements
                 // Create new intent to go to {@link EditorActivity}
                 Intent intent = new Intent(DataBaseActivity.this, NewRecordsActivity.class);
 
-                // Form the content URI that represents the specific pet that was clicked on,
+                // Form the content URI that represents the specific product that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
-                // {@link PetEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.example.android.pets/pets/2"
-                // if the pet with ID 2 was clicked on.
+                // {@link InventoryEntry#CONTENT_URI}.
+                // For example, the URI would be "content://com.example.android.inventoryapp/PRODUCTS/1"
+                // if the product with ID 1 was clicked on.
                 Uri currentProductUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentProductUri);
 
-                // Launch the {@link EditorActivity} to display the data for the current pet.
+                // Launch the {@link EditorActivity} to display the data for the current product.
                 startActivity(intent);
             }
         });
@@ -93,11 +93,11 @@ public class DataBaseActivity extends AppCompatActivity implements
 
 
     /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
+     * Helper method to insert hardcoded product data into the database. For debugging purposes only.
      */
     private void insertProduct() {
         // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
+        // and headphones product attributes are the values.
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Headphones_V567");
         values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, 15);
@@ -106,15 +106,15 @@ public class DataBaseActivity extends AppCompatActivity implements
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Luna");
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, "890098890");
 
-        // Insert a new row for Toto into the provider using the ContentResolver.
-        // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
-        // into the pets database table.
+        // Insert a new row for headphones into the provider using the ContentResolver.
+        // Use the {@link InventoryEntry#CONTENT_URI} to indicate that we want to insert
+        // into the products database table.
         // Receive the new content URI that will allow us to access Toto's data in the future.
         Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
     }
 
     /**
-     * Helper method to delete all pets in the database.
+     * Helper method to delete all products in the database.
      */
     private void deleteAllProducts() {
         int rowsDeleted = getContentResolver().delete(InventoryEntry.CONTENT_URI, null, null);
@@ -171,7 +171,7 @@ public class DataBaseActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        // Update {@link ProductCursorAdapter} with this new cursor containing updated product data
         mCursorAdapter.swapCursor(data);
     }
 

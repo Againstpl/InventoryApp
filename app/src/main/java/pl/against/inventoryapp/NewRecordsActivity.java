@@ -34,14 +34,14 @@ import pl.against.inventoryapp.data.InventoryContract.InventoryEntry;
 public class NewRecordsActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
     /**
-     * Identifier for the pet data loader
+     * Identifier for the product data loader
      */
-    private static final int EXISTING_PET_LOADER = 0;
-    int quantityChange;
+    private static final int EXISTING_PRODUCT_LOADER = 0;
     /**
-     * Content URI for the existing pet (null if it's a new pet)
+     * New value created after increasing/decreasing
      */
-    private Uri mCurrentProductUri;
+
+    int quantityChange;
     /**
      * EditText field to enter the product's name
      */
@@ -68,9 +68,9 @@ public class NewRecordsActivity extends AppCompatActivity implements
     private Spinner mSizeSpinner;
     private int mSize = InventoryEntry.SIZE_MEDIUM;
     /**
-     * Boolean flag that keeps track of whether the pet has been edited (true) or not (false)
+     * Content URI for the existing product (null if it's a new product)
      */
-    private boolean mProductHasChanged = false;
+    private Uri mCurrentProductUri;
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
      * the view, and we change the mProductHasChanged boolean to true.
@@ -82,7 +82,17 @@ public class NewRecordsActivity extends AppCompatActivity implements
             return false;
         }
     };
+    /**
+     * Boolean flag that keeps track of whether the product has been edited (true) or not (false)
+     */
+    private boolean mProductHasChanged = false;
+    /**
+     * Button to increase quantity
+     */
     private Button mIncreaseButton;
+    /**
+     * Button to decrease quantity
+     */
     private Button mDecreaseButton;
 
     @Override
@@ -109,7 +119,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
 
             // Initialize a loader to read the pet data from the database
             // and display the current values in the editor
-            getLoaderManager().initLoader(EXISTING_PET_LOADER, null, this);
+            getLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
         }
 
         // Find all relevant views that we will need to read user input from

@@ -89,8 +89,6 @@ public class InventoryProvider extends ContentProvider {
                 selection = InventoryContract.InventoryEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
-                // This will perform a query on the pets table where the _id equals 3 to return a
-                // Cursor containing that row of the table.
                 cursor = database.query(InventoryContract.InventoryEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
@@ -136,7 +134,7 @@ public class InventoryProvider extends ContentProvider {
         if (size == null || !InventoryContract.InventoryEntry.isValidSize(size)) {
             throw new IllegalArgumentException("Product requires valid size");
         }
-        // If the price is provided, check that it's greater than or equal to 0 kg
+        // If the price is provided, check that it's greater than or equal to 0
         Integer price = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
         if (price == null || price < 0) {
             throw new IllegalArgumentException("Product requires valid price");
@@ -153,7 +151,7 @@ public class InventoryProvider extends ContentProvider {
         // Get writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Insert the new pet with the given values
+        // Insert the new product with the given values
         long id = database.insert(InventoryContract.InventoryEntry.TABLE_NAME, null, values);
 
         // If the ID is -1, then the insertion failed. Log an error and return null.
@@ -162,7 +160,7 @@ public class InventoryProvider extends ContentProvider {
             return null;
         }
 
-        // Notify all listeners that the data has changed for the pet content URI
+        // Notify all listeners that the data has changed for the product content URI
         getContext().getContentResolver().notifyChange(uri, null);
 
 
@@ -215,10 +213,10 @@ public class InventoryProvider extends ContentProvider {
             }
         }
 
-        // If the {@link PetEntry#COLUMN_PET_WEIGHT} key is present,
-        // check that the weight value is valid.
+        // If the {@link InventoryEntry#COLUMN_PRODUCT_PRICE} key is present,
+        // check that the price value is valid.
         if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE)) {
-            // Check that the weight is greater than or equal to 0 kg
+            // Check that the price is greater than or equal to 0
             Integer price = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
             if (price == null || price < 0) {
                 throw new IllegalArgumentException("Product requires valid price");
@@ -252,9 +250,7 @@ public class InventoryProvider extends ContentProvider {
         // Return the number of rows updated
         return rowsUpdated;
 
-
     }
-
 
 
     /**
@@ -292,7 +288,6 @@ public class InventoryProvider extends ContentProvider {
         // Return the number of rows deleted
         return rowsDeleted;
     }
-
 
     /**
      * Returns the MIME type of data for the content URI.
