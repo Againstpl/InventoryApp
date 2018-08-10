@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import pl.against.inventoryapp.data.InventoryContract;
 
@@ -72,9 +73,11 @@ public class ProductCursorAdapter extends CursorAdapter {
         final int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
 
         // Read the pet attributes from the Cursor for the current pet
+        final int productID = cursor.getInt(idColumnIndex);
         String productName = cursor.getString(nameColumnIndex);
         String productPrice = cursor.getString(priceColumnIndex);
-        final String productQuantity = cursor.getString(quantityColumnIndex);
+        final int productQuantityInteger = cursor.getInt(quantityColumnIndex);
+        String productQuantityString = cursor.getString(quantityColumnIndex);
 
         // If the pet breed is empty string or null, then use some default text
         // that says "Unknown breed", so the TextView isn't blank.
@@ -86,25 +89,29 @@ public class ProductCursorAdapter extends CursorAdapter {
         // Update the TextViews with the attributes for the current pet
         nameTextView.setText(productName);
         priceTextView.setText(productPrice);
-        quantityTextView.setText(productQuantity);
+        quantityTextView.setText(productQuantityString);
 
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //I know that this params are wrong, but nothing works here.
-                saleProduct(context, id, quantity);
+                saleProduct(context, productID, productQuantityInteger);
             }
         });
 
     }
 
     private void saleProduct(Context context, int id, int quantity) {
-        quantity = quantity - 1;
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
-        Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
-        int rowsUpdated = context.getContentResolver().update(currentProductUri, values, null, null);
-        Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
+        if (quantity > 0) {
+            quantity = quantity - 1;
+            ContentValues values = new ContentValues();
+            values.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+            Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
+            int rowsUpdated = context.getContentResolver().update(currentProductUri, values, null, null);
+            Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
+        } else {
+            Toast.makeText(this, getString(R.string.quantity_zero), Toast.LENGTH_SHORT).show();
+        }
     }
 
 
