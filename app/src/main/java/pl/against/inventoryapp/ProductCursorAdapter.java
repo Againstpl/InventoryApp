@@ -19,7 +19,7 @@ import pl.against.inventoryapp.data.InventoryContract;
 
 /**
  * {@link ProductCursorAdapter} is an adapter for a list or grid view
- * that uses a {@link Cursor} of pet data as its data source. This adapter knows
+ * that uses a {@link Cursor} of product data as its data source. This adapter knows
  * how to create list items for each row of pet data in the {@link Cursor}.
  */
 public class ProductCursorAdapter extends CursorAdapter {
@@ -49,8 +49,8 @@ public class ProductCursorAdapter extends CursorAdapter {
     }
 
     /**
-     * This method binds the pet data (in the current row pointed to by cursor) to the given
-     * list item layout. For example, the name for the current pet can be set on the name TextView
+     * This method binds the product data (in the current row pointed to by cursor) to the given
+     * list item layout. For example, the name for the current product can be set on the name TextView
      * in the list item layout.
      *
      * @param view    Existing view, returned earlier by newView() method
@@ -66,21 +66,21 @@ public class ProductCursorAdapter extends CursorAdapter {
         final TextView quantityTextView = view.findViewById(R.id.quantity);
         Button saleButton = view.findViewById(R.id.sale);
 
-        // Find the columns of pet attributes that we're interested in
+        // Find the columns of product attributes that we're interested in
         final int idColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
         final int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
 
-        // Read the pet attributes from the Cursor for the current pet
+        // Read the product attributes from the Cursor for the current product
         final int productID = cursor.getInt(idColumnIndex);
         String productName = cursor.getString(nameColumnIndex);
         String productPrice = cursor.getString(priceColumnIndex);
         final int productQuantityInteger = cursor.getInt(quantityColumnIndex);
         String productQuantityString = cursor.getString(quantityColumnIndex);
 
-        // If the pet breed is empty string or null, then use some default text
-        // that says "Unknown breed", so the TextView isn't blank.
+        // If the price is empty string or null, then use some default text
+        // that says "Unknown price", so the TextView isn't blank.
         if (TextUtils.isEmpty(productPrice)) {
             productPrice = context.getString(R.string.unknown_price);
 
