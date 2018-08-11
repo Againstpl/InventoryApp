@@ -81,7 +81,7 @@ public class DataBaseActivity extends AppCompatActivity implements
                 // Set the URI on the data field of the intent
                 intent.setData(currentProductUri);
 
-                // Launch the {@link EditorActivity} to display the data for the current product.
+                // Launch the {@link NewRecordActivity} to display the data for the current product.
                 startActivity(intent);
             }
         });
@@ -99,10 +99,10 @@ public class DataBaseActivity extends AppCompatActivity implements
         // Create a ContentValues object where column names are the keys,
         // and headphones product attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Headphones_V567");
+        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Headphones V567");
         values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, 15);
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, InventoryEntry.SIZE_MEDIUM);
-        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, 7);
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, 1);
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Luna");
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, "890098890");
 

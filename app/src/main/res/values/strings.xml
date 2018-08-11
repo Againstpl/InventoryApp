@@ -16,7 +16,7 @@
 
 
     <string name="empty_view_title_text">It\'s a bit lonely here&#8230;</string>
-    <string name="empty_view_subtitle_text">Get started by adding a pet</string>
+    <string name="empty_view_subtitle_text">Add a new product to data base</string>
 
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
     <string name="discard">Discard</string>
@@ -28,6 +28,18 @@
     <string name="cancel">Cancel</string>
     <string name="unknown_price">Unknown price</string>
     <string name="quantity_zero">Quantity cannot be less than zero</string>
+    <string name="quantity_zero_sale">This product is sold out</string>
+    <string name="increase">+</string>
+    <string name="decrease">-</string>
+
+
+    <string name="label_name">name</string>
+    <string name="label_price">price</string>
+    <string name="label_size">size</string>
+    <string name="label_quantity">quantity</string>
+    <string name="label_supplier">supplier</string>
+    <string name="label_phone">phone number</string>
+    <string name="label_sale">sale</string>
 
 
     <string-array name="array_size_options">

@@ -113,7 +113,7 @@ public class ProductCursorAdapter extends CursorAdapter {
             Log.v("DataBaseActivity", rowsUpdated + " rows updated in database");
         } else {
 
-            Toast.makeText(context, R.string.quantity_zero, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.quantity_zero_sale, Toast.LENGTH_SHORT).show();
         }
     }
 

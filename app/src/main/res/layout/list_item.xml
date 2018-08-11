@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:paddingRight="@dimen/label_padding"
-            android:text="name:"
+            android:text="@string/label_name"
             android:focusable="false"
             android:textAppearance="?android:textAppearanceSmall" />
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:paddingRight="@dimen/label_padding"
-            android:text="price:"
+            android:text="@string/label_price"
             android:focusable="false"
             android:textAppearance="?android:textAppearanceSmall" />
 
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:paddingRight="@dimen/label_padding"
-            android:text="quantity:"
+            android:text="@string/label_quantity"
             android:focusable="false"
             android:textAppearance="?android:textAppearanceSmall" />
 
@@ -82,64 +82,12 @@
 
     </LinearLayout>
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:paddingRight="@dimen/label_padding"-->
-    <!--android:text="supplier:"-->
-    <!--android:focusable="false"-->
-    <!--android:textAppearance="?android:textAppearanceSmall" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/supplier"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:textAppearance="?android:textAppearanceSmall"-->
-    <!--android:focusable="false"-->
-    <!--android:textColor="#2B3D4D" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:paddingRight="@dimen/label_padding"-->
-    <!--android:text="phone:"-->
-    <!--android:focusable="false"-->
-    <!--android:textAppearance="?android:textAppearanceSmall" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/phone"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:autoLink="phone"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:textAppearance="?android:textAppearanceSmall"-->
-    <!--android:focusable="false"-->
-    <!--android:textColor="#2B3D4D" />-->
-
-    <!--</LinearLayout>-->
-
-
     <Button
         android:id="@+id/sale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="false"
-        android:text="sale" />
+        android:text="@string/label_sale" />
 
 
 </LinearLayout>

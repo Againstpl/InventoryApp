@@ -200,7 +200,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
 
         String supplierString = mSupplierEditText.getText().toString().trim();
         String phoneString = mPhoneEditText.getText().toString().trim();
-        int phone = Integer.parseInt(phoneString);
+        long phone = Integer.parseInt(phoneString);
 
         // Check if this is supposed to be a new pet
         // and check if all the fields in the editor are blank
@@ -397,14 +397,14 @@ public class NewRecordsActivity extends AppCompatActivity implements
             int size = cursor.getInt(sizeColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
             String supplierName = cursor.getString(supplierNameColumnIndex);
-            int supplierPhone = cursor.getInt(supplierPhoneColumnIndex);
+            long supplierPhone = cursor.getLong(supplierPhoneColumnIndex);
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
             mPriceEditText.setText(Integer.toString(price));
             mQuantityEditText.setText(Integer.toString(quantity));
             mSupplierEditText.setText(supplierName);
-            mPhoneEditText.setText(Integer.toString(supplierPhone));
+            mPhoneEditText.setText(Long.toString(supplierPhone));
 
             switch (size) {
                 case InventoryEntry.SIZE_MEDIUM:

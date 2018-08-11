@@ -126,22 +126,20 @@ public class InventoryProvider extends ContentProvider {
 
         // Check that the name is not null
         String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
+        Integer price = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
+        Integer quantity = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
+
+
         if (name == null) {
             throw new IllegalArgumentException("Product requires a name");
         }
-        // Check that the size is valid
-        Integer size = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_SIZE);
-        if (size == null || !InventoryContract.InventoryEntry.isValidSize(size)) {
-            throw new IllegalArgumentException("Product requires valid size");
-        }
+
         // If the price is provided, check that it's greater than or equal to 0
-        Integer price = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
         if (price == null || price < 0) {
             throw new IllegalArgumentException("Product requires valid price");
         }
 
         // Check that the size is valid
-        Integer quantity = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
         if (quantity == null || quantity < 0) {
             throw new IllegalArgumentException("Product requires valid quantity");
         }
@@ -203,13 +201,6 @@ public class InventoryProvider extends ContentProvider {
             String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
             if (name == null) {
                 throw new IllegalArgumentException("Product requires a name");
-            }
-        }
-
-        if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_PRODUCT_SIZE)) {
-            Integer size = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_SIZE);
-            if (size == null || !InventoryContract.InventoryEntry.isValidSize(size)) {
-                throw new IllegalArgumentException("Product requires valid size");
             }
         }
 
