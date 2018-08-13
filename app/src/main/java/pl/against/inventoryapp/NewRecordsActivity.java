@@ -195,18 +195,16 @@ public class NewRecordsActivity extends AppCompatActivity implements
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
-        int price = Integer.parseInt(priceString);
         String quantityString = mQuantityEditText.getText().toString().trim();
-
         String supplierString = mSupplierEditText.getText().toString().trim();
         String phoneString = mPhoneEditText.getText().toString().trim();
-        long phone = Integer.parseInt(phoneString);
+
 
         // Check if this is supposed to be a new pet
         // and check if all the fields in the editor are blank
         if (mCurrentProductUri == null &&
                 TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString) &&
-                TextUtils.isEmpty(quantityString) && mSize == InventoryEntry.SIZE_MEDIUM) {
+                TextUtils.isEmpty(quantityString) && mSize == InventoryEntry.SIZE_MEDIUM && TextUtils.isEmpty(supplierString) && TextUtils.isEmpty(phoneString)) {
             // Since no fields were modified, we can return early without creating a new product.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
@@ -216,18 +214,28 @@ public class NewRecordsActivity extends AppCompatActivity implements
         // and products attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, price);
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, mSize);
+        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierString);
+
 
         // If the quantity is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
+        int price = 0;
+        if (!TextUtils.isEmpty(priceString)) {
+            price = Integer.parseInt(priceString);
+        }
+
         int quantity = 0;
         if (!TextUtils.isEmpty(quantityString)) {
             quantity = Integer.parseInt(quantityString);
         }
 
+        long phone = 0;
+        if (!TextUtils.isEmpty(quantityString)) {
+            phone = Integer.parseInt(phoneString);
+        }
+        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, price);
         values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierString);
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, phone);
 
         // Determine if this is a new or existing pet by checking if mCurrentProductUri is null or not
