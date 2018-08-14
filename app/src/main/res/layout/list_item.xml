@@ -82,12 +82,43 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/sale"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusable="false"
-        android:text="@string/label_sale" />
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+
+        <Button
+            android:id="@+id/sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:text="@string/label_sale" />
+
+        <Button
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:text="@string/label_details" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/edit"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:focusable="false"-->
+        <!--android:text="@string/label_edit"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textStyle="bold"-->
+        <!--android:paddingBottom="@dimen/button_top"-->
+        <!--android:paddingTop="@dimen/button_top"-->
+        <!--android:paddingStart="@dimen/button_left"-->
+        <!--android:paddingEnd="@dimen/button_left"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--/>-->
+
+    </LinearLayout>
 
 
 </LinearLayout>

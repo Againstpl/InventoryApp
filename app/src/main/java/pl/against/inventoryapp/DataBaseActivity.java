@@ -86,6 +86,14 @@ public class DataBaseActivity extends AppCompatActivity implements
             }
         });
 
+//        TextView details = findViewById(R.id.details);
+//        details.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
 
         // Kick off the loader
         getLoaderManager().initLoader(PRODUCT_LOADER, null, this);

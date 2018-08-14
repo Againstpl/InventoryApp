@@ -38,8 +38,10 @@
     <string name="label_size">size</string>
     <string name="label_quantity">quantity</string>
     <string name="label_supplier">supplier</string>
-    <string name="label_phone">phone number</string>
+    <string name="label_phone">phone</string>
     <string name="label_sale">sale</string>
+    <string name="label_edit">edit</string>
+    <string name="label_details">details</string>
 
 
     <string-array name="array_size_options">

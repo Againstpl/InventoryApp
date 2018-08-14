@@ -105,27 +105,41 @@
             android:text="@string/label_quantity"
             style="@style/CategoryStyle" />
 
-        <!-- Quantity field -->
-        <EditText
-            android:id="@+id/edit_product_quantity"
-            android:layout_width="wrap_content"
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/label_quantity"
-            android:inputType="number" />
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:paddingLeft="4dp">
 
-        <Button
-            android:id="@+id/increase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="increase"
-            android:text="@string/increase" />
+            <!-- Quantity field -->
+            <EditText
+                android:id="@+id/edit_product_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_quantity"
+                android:layout_weight="3"
+                android:inputType="number" />
 
-        <Button
-            android:id="@+id/decrease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="decrease"
-            android:text="@string/decrease" />
+            <Button
+                android:id="@+id/increase"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="increase"
+                android:text="@string/increase" />
+
+            <Button
+                android:id="@+id/decrease"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="decrease"
+                android:text="@string/decrease" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -140,13 +154,21 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/label_supplier" />
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
 
-        <!-- Supplier field -->
-        <EditText
-            android:id="@+id/edit_supplier_name"
-            style="@style/NewRecordFieldStyle"
-            android:hint="@string/label_supplier"
-            android:inputType="text" />
+            <!-- Supplier field -->
+            <EditText
+                android:id="@+id/edit_supplier_name"
+                style="@style/NewRecordFieldStyle"
+                android:hint="@string/label_supplier"
+                android:inputType="text" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -162,12 +184,32 @@
             style="@style/CategoryStyle"
             android:text="@string/label_phone" />
 
-        <!-- Phone field -->
-        <EditText
-            android:id="@+id/edit_supplier_phone"
-            style="@style/NewRecordFieldStyle"
-            android:hint="@string/label_phone"
-            android:inputType="phone" />
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:paddingLeft="4dp">
+
+            <!-- Phone field -->
+            <EditText
+                android:id="@+id/edit_supplier_phone"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_phone"
+                android:layout_weight="3"
+                android:inputType="phone" />
+
+            <ImageButton
+                android:id="@+id/button_phone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/call2" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </LinearLayout>
