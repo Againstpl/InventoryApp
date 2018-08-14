@@ -3,7 +3,6 @@ package pl.against.inventoryapp.data;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -127,7 +126,7 @@ public class InventoryProvider extends ContentProvider {
      * Insert a product into the database with the given content values. Return the new content URI
      * for that specific row in the database.
      */
-    private Uri insertProduct(Uri uri, ContentValues values, Context context) {
+    private Uri insertProduct(Uri uri, ContentValues values) {
 
         // Check that the name is not null
         String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
