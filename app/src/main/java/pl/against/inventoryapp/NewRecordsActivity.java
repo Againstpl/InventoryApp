@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -155,30 +156,6 @@ public class NewRecordsActivity extends AppCompatActivity implements
 
 
         setupSpinner();
-
-//
-//        mPhoneButton = findViewById(R.id.button_phone);
-//
-//        mPhoneButton.setOnClickListener(new View.OnClickListener() {
-//
-//            //String phoneString = mPhoneEditText.getText().toString().trim();
-//
-//            String
-//
-//            public void onClick(View arg0) {
-//
-////                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-////                callIntent.setData(Uri.parse(Uri.encode(phoneString)));
-////
-////
-////                startActivity(callIntent);
-//
-//
-//                Uri number = Uri.parse("tel:"+Uri.encode("*124#"));
-//                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-//                startActivity(callIntent);
-//            }
-//        });
 
     }
 
@@ -602,7 +579,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
         if (dialIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(dialIntent);
         } else {
-            //Log.e(TAG, "Can't resolve app for ACTION_DIAL Intent.");
+            Log.e("makeCall", "Can't resolve app for ACTION_DIAL Intent.");
         }
 
     }
