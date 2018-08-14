@@ -4,8 +4,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
 
@@ -17,19 +17,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="sans-serif"
             android:paddingRight="@dimen/label_padding"
             android:text="@string/label_name"
-            android:focusable="false"
             android:textAppearance="?android:textAppearanceSmall" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="sans-serif-medium"
             android:textAppearance="?android:textAppearanceMedium"
-            android:focusable="false"
             android:textColor="#2B3D4D" />
     </LinearLayout>
 
@@ -41,19 +41,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="sans-serif"
             android:paddingRight="@dimen/label_padding"
             android:text="@string/label_price"
-            android:focusable="false"
             android:textAppearance="?android:textAppearanceSmall" />
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="sans-serif"
             android:textAppearance="?android:textAppearanceSmall"
-            android:focusable="false"
             android:textColor="#2B3D4D" />
     </LinearLayout>
 
@@ -65,19 +65,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="sans-serif"
             android:paddingRight="@dimen/label_padding"
             android:text="@string/label_quantity"
-            android:focusable="false"
             android:textAppearance="?android:textAppearanceSmall" />
 
         <TextView
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="sans-serif"
             android:textAppearance="?android:textAppearanceSmall"
-            android:focusable="false"
             android:textColor="#2B3D4D" />
 
     </LinearLayout>
@@ -95,13 +95,6 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:text="@string/label_sale" />
-
-        <!--<Button-->
-        <!--android:id="@+id/details"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:focusable="false"-->
-        <!--android:text="@string/label_details" />-->
 
         <TextView
             android:id="@+id/edit"

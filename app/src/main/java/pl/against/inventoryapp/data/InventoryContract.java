@@ -9,8 +9,6 @@ import android.provider.BaseColumns;
  */
 public class InventoryContract {
 
-    // To prevent someone from accidentally instantiating the contract class,
-    // give it an empty constructor.
     private InventoryContract() {
     }
 
@@ -26,7 +24,7 @@ public class InventoryContract {
      * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact
      * the content provider.
      */
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    private static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
 
     public static final String PATH_PRODUCTS = "PRODUCTS";

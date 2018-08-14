@@ -110,14 +110,13 @@ public class DataBaseActivity extends AppCompatActivity implements
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Headphones V567");
         values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, 15);
         values.put(InventoryEntry.COLUMN_PRODUCT_SIZE, InventoryEntry.SIZE_MEDIUM);
-        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, 1);
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, 4);
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Luna");
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, "890098890");
 
         // Insert a new row for headphones into the provider using the ContentResolver.
         // Use the {@link InventoryEntry#CONTENT_URI} to indicate that we want to insert
         // into the products database table.
-        // Receive the new content URI that will allow us to access Toto's data in the future.
         Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
     }
 
@@ -128,7 +127,6 @@ public class DataBaseActivity extends AppCompatActivity implements
         int rowsDeleted = getContentResolver().delete(InventoryEntry.CONTENT_URI, null, null);
         Log.v("DataBaseActivity", rowsDeleted + " rows deleted from database");
     }
-
 
 
     @Override

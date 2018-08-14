@@ -23,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -74,6 +73,10 @@ public class NewRecordsActivity extends AppCompatActivity implements
      */
     private Uri mCurrentProductUri;
     /**
+     * Boolean flag that keeps track of whether the product has been edited (true) or not (false)
+     */
+    private boolean mProductHasChanged = false;
+    /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
      * the view, and we change the mProductHasChanged boolean to true.
      */
@@ -85,10 +88,6 @@ public class NewRecordsActivity extends AppCompatActivity implements
         }
     };
     /**
-     * Boolean flag that keeps track of whether the product has been edited (true) or not (false)
-     */
-    private boolean mProductHasChanged = false;
-    /**
      * Button to increase quantity
      */
     private Button mIncreaseButton;
@@ -97,11 +96,6 @@ public class NewRecordsActivity extends AppCompatActivity implements
      */
     private Button mDecreaseButton;
 
-    /**
-     * Button to make a phone call to supplier
-     */
-
-    private ImageButton mPhoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,8 +146,6 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mPhoneEditText.setOnTouchListener(mTouchListener);
         mIncreaseButton.setOnTouchListener(mTouchListener);
         mDecreaseButton.setOnTouchListener(mTouchListener);
-        //  mPhoneButton.setOnTouchListener(mTouchListener);
-
 
         setupSpinner();
 

@@ -11,7 +11,7 @@ import pl.against.inventoryapp.data.InventoryContract.InventoryEntry;
  */
 public class InventoryDbHelper extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = InventoryDbHelper.class.getSimpleName();
+    // public static final String LOG_TAG = InventoryDbHelper.class.getSimpleName();
 
     /**
      * Name of the database file

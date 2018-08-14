@@ -8,6 +8,7 @@
     <string name="new_record_activity_title_edit_product">Edit a product</string>
     <string name="insert_data">Insert</string>
     <string name="delete_data">Delete</string>
+    <string name="delete_all_data">Delete All</string>
     <string name="save_data">Save</string>
     <string name="new_record_insert_product_successful">Product saved</string>
     <string name="new_record_insert_product_failed">Error with saving product</string>
