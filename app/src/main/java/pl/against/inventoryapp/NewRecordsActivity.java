@@ -1,7 +1,6 @@
 package pl.against.inventoryapp;
 
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -9,11 +8,9 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -159,25 +156,29 @@ public class NewRecordsActivity extends AppCompatActivity implements
 
         setupSpinner();
 
-
-        mPhoneButton = findViewById(R.id.button_phone);
-
-        mPhoneButton.setOnClickListener(new View.OnClickListener() {
-
-            String phoneString = mPhoneEditText.getText().toString().trim();
-
-            public void onClick(View arg0) {
-
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(Uri.encode(phoneString)));
-
-                if (ActivityCompat.checkSelfPermission(NewRecordsActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent);
-            }
-        });
+//
+//        mPhoneButton = findViewById(R.id.button_phone);
+//
+//        mPhoneButton.setOnClickListener(new View.OnClickListener() {
+//
+//            //String phoneString = mPhoneEditText.getText().toString().trim();
+//
+//            String
+//
+//            public void onClick(View arg0) {
+//
+////                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+////                callIntent.setData(Uri.parse(Uri.encode(phoneString)));
+////
+////
+////                startActivity(callIntent);
+//
+//
+//                Uri number = Uri.parse("tel:"+Uri.encode("*124#"));
+//                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+//                startActivity(callIntent);
+//            }
+//        });
 
     }
 
@@ -587,5 +588,23 @@ public class NewRecordsActivity extends AppCompatActivity implements
         }
     }
 
+    public void makeCall(View view) {
+
+        EditText phoneEditText = findViewById(R.id.edit_supplier_phone);
+
+        String phoneNumber = String.format("tel: %s",
+                phoneEditText.getText().toString());
+
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+
+        dialIntent.setData(Uri.parse(phoneNumber));
+
+        if (dialIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(dialIntent);
+        } else {
+            //Log.e(TAG, "Can't resolve app for ACTION_DIAL Intent.");
+        }
+
+    }
 
 }
