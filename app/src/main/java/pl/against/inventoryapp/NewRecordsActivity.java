@@ -253,15 +253,23 @@ public class NewRecordsActivity extends AppCompatActivity implements
         if (mCurrentProductUri == null) {
             // This is a NEW product, so insert a new product into the provider,
             // returning the content URI for the new product.
-            Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
-            // Show a toast message depending on whether or not the insertion was successful.
-            if (newUri == null) {
-                // If the new content URI is null, then there was an error with insertion.
-                Toast.makeText(this, getString(R.string.new_record_insert_product_failed),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.new_record_insert_product_successful),
+
+
+            try {
+                Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+                // Show a toast message depending on whether or not the insertion was successful.
+                if (newUri == null) {
+                    // If the new content URI is null, then there was an error with insertion.
+                    Toast.makeText(this, getString(R.string.new_record_insert_product_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    // Otherwise, the insertion was successful and we can display a toast.
+                    Toast.makeText(this, getString(R.string.new_record_insert_product_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(this, getString(R.string.new_record_error_message),
                         Toast.LENGTH_SHORT).show();
             }
         } else {

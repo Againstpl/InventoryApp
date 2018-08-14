@@ -9,9 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
-
-import pl.against.inventoryapp.R;
 
 /**
  * {@link ContentProvider} for Inventory app.
@@ -137,9 +134,8 @@ public class InventoryProvider extends ContentProvider {
 
 
         if (name == null || TextUtils.isEmpty(name)) {
-            //throw new IllegalArgumentException("Product requires a name");
-            Toast.makeText(this, R.string.new_record_insert_product_failed,
-                    Toast.LENGTH_SHORT).show();
+            throw new IllegalArgumentException("Product requires a name");
+
         }
 
         // If the price is provided, check that it's greater than or equal to 0
