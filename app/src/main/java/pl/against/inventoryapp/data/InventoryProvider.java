@@ -3,11 +3,16 @@ package pl.against.inventoryapp.data;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
+
+import pl.against.inventoryapp.R;
 
 /**
  * {@link ContentProvider} for Inventory app.
@@ -122,16 +127,20 @@ public class InventoryProvider extends ContentProvider {
      * Insert a product into the database with the given content values. Return the new content URI
      * for that specific row in the database.
      */
-    private Uri insertProduct(Uri uri, ContentValues values) {
+    private Uri insertProduct(Uri uri, ContentValues values, Context context) {
 
         // Check that the name is not null
         String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
         Integer price = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_PRICE);
         Integer quantity = values.getAsInteger(InventoryContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY);
+        String supplier = values.getAsString(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_NAME);
+        Long phone = values.getAsLong(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_PHONE);
 
 
-        if (name == null) {
-            throw new IllegalArgumentException("Product requires a name");
+        if (name == null || TextUtils.isEmpty(name)) {
+            //throw new IllegalArgumentException("Product requires a name");
+            Toast.makeText(this, R.string.new_record_insert_product_failed,
+                    Toast.LENGTH_SHORT).show();
         }
 
         // If the price is provided, check that it's greater than or equal to 0
@@ -139,12 +148,20 @@ public class InventoryProvider extends ContentProvider {
             throw new IllegalArgumentException("Product requires valid price");
         }
 
-        // Check that the size is valid
+        // Check that the quantity is valid
         if (quantity == null || quantity < 0) {
             throw new IllegalArgumentException("Product requires valid quantity");
         }
 
-        // Supplier and Supplier phone number are not required.
+        //Check the supplier name
+        if (supplier == null || TextUtils.isEmpty(supplier)) {
+            throw new IllegalArgumentException("Product requires valid supplier");
+        }
+
+        //Check the supplier phone
+        if (phone == null) {
+            throw new IllegalArgumentException("Product requires valid phone number");
+        }
 
         // Get writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -199,7 +216,7 @@ public class InventoryProvider extends ContentProvider {
 
         if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME)) {
             String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME);
-            if (name == null) {
+            if (name == null || TextUtils.isEmpty(name)) {
                 throw new IllegalArgumentException("Product requires a name");
             }
         }
@@ -222,7 +239,19 @@ public class InventoryProvider extends ContentProvider {
             }
         }
 
-        // Supplier and Supplier phone number are not required.
+        if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_NAME)) {
+            String supplier = values.getAsString(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_NAME);
+            if (supplier == null || TextUtils.isEmpty(supplier)) {
+                throw new IllegalArgumentException("Product requires valid supplier");
+            }
+        }
+
+        if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_PHONE)) {
+            Long phone = values.getAsLong(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_PHONE);
+            if (phone == null) {
+                throw new IllegalArgumentException("Product requires valid phone number");
+            }
+        }
 
         // If there are no values to update, then don't try to update the database
         if (values.size() == 0) {
