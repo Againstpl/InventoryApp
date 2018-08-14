@@ -1,6 +1,7 @@
 package pl.against.inventoryapp;
 
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -8,9 +9,11 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -22,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -95,6 +99,12 @@ public class NewRecordsActivity extends AppCompatActivity implements
      */
     private Button mDecreaseButton;
 
+    /**
+     * Button to make a phone call to supplier
+     */
+
+    private ImageButton mPhoneButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +142,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mIncreaseButton = findViewById(R.id.increase);
         mDecreaseButton = findViewById(R.id.decrease);
 
+
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
         // or not, if the user tries to leave the editor without saving.
@@ -143,8 +154,29 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mPhoneEditText.setOnTouchListener(mTouchListener);
         mIncreaseButton.setOnTouchListener(mTouchListener);
         mDecreaseButton.setOnTouchListener(mTouchListener);
+        mPhoneButton.setOnTouchListener(mTouchListener);
+
 
         setupSpinner();
+
+
+        mPhoneButton = findViewById(R.id.button_phone);
+
+        mPhoneButton.setOnClickListener(new View.OnClickListener() {
+
+            String phoneString = mPhoneEditText.getText().toString().trim();
+
+            public void onClick(View arg0) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(phoneString));
+
+                if (ActivityCompat.checkSelfPermission(NewRecordsActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        });
 
     }
 
