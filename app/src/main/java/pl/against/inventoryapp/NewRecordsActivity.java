@@ -154,7 +154,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
         mPhoneEditText.setOnTouchListener(mTouchListener);
         mIncreaseButton.setOnTouchListener(mTouchListener);
         mDecreaseButton.setOnTouchListener(mTouchListener);
-        mPhoneButton.setOnTouchListener(mTouchListener);
+        //  mPhoneButton.setOnTouchListener(mTouchListener);
 
 
         setupSpinner();
@@ -167,8 +167,9 @@ public class NewRecordsActivity extends AppCompatActivity implements
             String phoneString = mPhoneEditText.getText().toString().trim();
 
             public void onClick(View arg0) {
+
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(phoneString));
+                callIntent.setData(Uri.parse(Uri.encode(phoneString)));
 
                 if (ActivityCompat.checkSelfPermission(NewRecordsActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -263,7 +264,7 @@ public class NewRecordsActivity extends AppCompatActivity implements
         }
 
         long phone = 0;
-        if (!TextUtils.isEmpty(quantityString)) {
+        if (!TextUtils.isEmpty(phoneString)) {
             phone = Integer.parseInt(phoneString);
         }
         values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, price);
@@ -553,13 +554,33 @@ public class NewRecordsActivity extends AppCompatActivity implements
     }
 
     public void increase(View view) {
-        quantityChange = quantityChange + 1;
+        ContentValues values = new ContentValues();
+
+        String quantityString = mQuantityEditText.getText().toString().trim();
+        int quantity = 0;
+        if (!TextUtils.isEmpty(quantityString)) {
+            quantity = Integer.parseInt(quantityString);
+        }
+
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+
+        quantityChange = quantity + 1;
         mQuantityEditText.setText(String.valueOf(quantityChange));
     }
 
     public void decrease(View view) {
-        if (quantityChange > 0) {
-            quantityChange = quantityChange - 1;
+        ContentValues values = new ContentValues();
+
+        String quantityString = mQuantityEditText.getText().toString().trim();
+        int quantity = 0;
+        if (!TextUtils.isEmpty(quantityString)) {
+            quantity = Integer.parseInt(quantityString);
+        }
+
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+
+        if (quantity > 0) {
+            quantityChange = quantity - 1;
             mQuantityEditText.setText(String.valueOf(quantityChange));
         } else {
             Toast.makeText(this, getString(R.string.quantity_zero), Toast.LENGTH_SHORT).show();
