@@ -265,22 +265,30 @@ public class NewRecordsActivity extends AppCompatActivity implements
                         Toast.LENGTH_SHORT).show();
             }
         } else {
-            // Otherwise this is an EXISTING product, so update the product with content URI: mCurrentProductUri
-            // and pass in the new ContentValues. Pass in null for the selection and selection args
-            // because mCurrentProductUri will already identify the correct row in the database that
-            // we want to modify.
-            int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
-            // Show a toast message depending on whether or not the update was successful.
-            if (rowsAffected == 0) {
-                // If no rows were affected, then there was an error with the update.
-                Toast.makeText(this, getString(R.string.new_record_update_product_failed),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // Otherwise, the update was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.new_record_update_product_successful),
+            try {
+                // Otherwise this is an EXISTING product, so update the product with content URI: mCurrentProductUri
+                // and pass in the new ContentValues. Pass in null for the selection and selection args
+                // because mCurrentProductUri will already identify the correct row in the database that
+                // we want to modify.
+                int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
+                // Show a toast message depending on whether or not the update was successful.
+                if (rowsAffected == 0) {
+                    // If no rows were affected, then there was an error with the update.
+                    Toast.makeText(this, getString(R.string.new_record_update_product_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    // Otherwise, the update was successful and we can display a toast.
+                    Toast.makeText(this, getString(R.string.new_record_update_product_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(this, getString(R.string.new_record_error_message),
                         Toast.LENGTH_SHORT).show();
             }
         }
+
+
     }
 
     @Override
